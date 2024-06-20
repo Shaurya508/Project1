@@ -8,3 +8,4 @@ langchain_google_genai
 google-generativeai
 faiss-cpu
 pdf2image
+pytesseract
