@@ -70,7 +70,7 @@ def create_ui():
 
 # Main function to run the app
 def main():
-    load_in_db()
+    # load_in_db()
     create_ui()
 
 if __name__ == "__main__":
