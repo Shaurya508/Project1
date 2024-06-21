@@ -1,5 +1,5 @@
 import streamlit as st
-from memory import user_input
+from memory import user_input ,load_in_db
 import time
 
 # Initialize the session state for conversation history and suggested questions if not already initialized
@@ -70,6 +70,7 @@ def create_ui():
 
 # Main function to run the app
 def main():
+    load_in_db()
     create_ui()
 
 if __name__ == "__main__":
