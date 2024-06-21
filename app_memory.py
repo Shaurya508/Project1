@@ -1,5 +1,5 @@
 import streamlit as st
-from memory import user_input ,load_in_db
+from memory import user_input
 import time
 
 # Initialize the session state for conversation history and suggested questions if not already initialized
@@ -10,7 +10,7 @@ if 'suggested_question' not in st.session_state:
     st.session_state.suggested_question = ""
 
 def create_ui():
-    st.markdown("<h1 style='text-align: center; color: #08daff;'><u>Aryma MMM GPT</u></h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: #0adbfc;'><u>MMM GPT</u></h1>", unsafe_allow_html=True)
     st.sidebar.image("Aryma Labs Logo.jpeg", use_column_width=True)
     st.sidebar.markdown("<h2 style='color: #08daff;'>Welcome to Aryma Labs</h2>", unsafe_allow_html=True)
     st.sidebar.write("Ask a question below and get instant insights.")
@@ -38,11 +38,24 @@ def create_ui():
     chat_container = st.container()
 
     with chat_container:
-        for q, r in st.session_state.conversation_history:
-            st.success("You:")
-            st.write(q)
-            st.success("MMM GPT:")
-            st.write(r)
+        for q, r in (st.session_state.conversation_history):
+            # st.success("You:")
+            # st.write(q)
+            # st.success("MMM GPT:")
+            # st.write(r)
+            st.markdown(f"<p style='text-align: right; color: #484f4f;'><b> {q}</b> </p>", unsafe_allow_html=True)
+            # st.markdown(f"<p style='text-align: left; color: #A9A9A9;'><img src='Question_image.png' alt='icon' style='width:20px;height:20px;'> <b> {r}</b> </p>", unsafe_allow_html=True)
+            # Create columns to align the image and text side by side
+            col1, col2 = st.columns([1, 8])
+        
+            with col1:
+                st.image('download.png', width=30)
+        
+            with col2:
+                st.write(r)
+                # st.write(f"<div style='text-align: right;'><b>{r}</b></div>", unsafe_allow_html=True)
+                # st.markdown(f"<p style='text-align: left; color: #A9A9A9;'><b>{r}</b></p>", unsafe_allow_html=True)
+
 
     # Get user input at the bottom
     st.markdown("---")
@@ -70,7 +83,6 @@ def create_ui():
 
 # Main function to run the app
 def main():
-    # load_in_db()
     create_ui()
 
 if __name__ == "__main__":
