@@ -9,4 +9,3 @@ google-generativeai
 faiss-cpu
 pdf2image
 pytesseract
-dotenv
