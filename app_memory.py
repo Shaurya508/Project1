@@ -30,7 +30,7 @@ def create_ui():
         ]
 
         for i, question in enumerate(suggested_questions):
-            if cols[i % 5].checkbox(question) :
+            if cols[i % 5].button(question) :
                 st.session_state.suggested_question = question
                 st.experimental_rerun()
 
