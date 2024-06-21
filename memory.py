@@ -4,7 +4,7 @@ import os
 # from PyPDF2 import PdfReader #used it before now using tesseract
 import requests
 from bs4 import BeautifulSoup
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 import google.generativeai as genai
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
@@ -18,7 +18,7 @@ from pdf2image import convert_from_path
 # from PIL import Image
 import pytesseract
 # Load the Google API key from the .env file
-# load_dotenv()
+load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 def extract_text_from_url(url):
@@ -110,7 +110,8 @@ def user_input(user_question):
     provide every answer in detailed explanation and easy words to make easy for the User.Give more weightage to question.
     when the question is asking for code provide Short part of code Write that "Code looks like this " before giving code in a good format and easy to copy format.after providing the code , give Github Link from the paragraph from which you give the code in the end like :
     "Please check detailed code at" : Github link
-    Also, provide one URL link given in the context in the following way in the end of the Answer whenver you think it's correct to provide link.
+    remember , give github link only and only when code is asked.
+    Always provide one URL link given in the context in the following way in the end of the Answer whenver you think it's correct to provide link.
     "For more details visit" : URL link \n\n
 
     chat history : {chat_history}
@@ -147,14 +148,14 @@ def load_in_db():
         text_chunks = get_text_chunks(article_text)
         for chunk in text_chunks:
             url_text_chunks.append(f"URL: {url}\n{chunk}")
-    pdf_titles = ['Robyn.pdf' , 'Robyn-Under-The-Hood.pdf' , 'Robyn-Under-the-hood-Ridge-Regression-in-depth.pdf' , '5.-Robyn-Under-The-Hood-Flowchart_v2.pdf', '3.-Robyn-Under-The-Hood-Adstock-Transformation.pdf', '4.-Robyn-Under-The-Hood-Hill-Transformation.pdf']
+    pdf_titles = ['Robyn.pdf' , 'Robyn-Under-The-Hood.pdf' , 'Robyn-Under-the-hood-Ridge-Regression-in-depth.pdf' , '5.-Robyn-Under-The-Hood-Flowchart_v2.pdf', '3.-Robyn-Under-The-Hood-Adstock-Transformation.pdf', '4.-Robyn-Under-The-Hood-Hill-Transformation.pdf','Granger-Causality-A-possible-Feature-Selection-Method-in-Marketing-Mix-Modeling-MMM.pdf','Granularity-MMM-Problem-Cracked.pdf' , 'Investigation-of-Marketing-Mix-Models-Business-Error-using-KL-Divergence-and-Chebyshevs-Inequality.pdf', 'Proving-Efficacy-of-Marketing-Mix-Model-through-the-Difference-in-Difference-DID-Technique.pdf']
     for pdf in pdf_titles:
         article_text = extract_text_from_pdf(pdf)
         text_chunks = get_text_chunks(article_text)
         for chunk in text_chunks:
             url_text_chunks.append(f"{chunk}")
     # Github stuff
-    Github_links =  ['https://github.com/facebookexperimental/Robyn/blob/main/demo/demo.R' , 'https://github.com/facebookexperimental/Robyn/blob/main/robyn_api/robyn_python_notebook.ipynb','https://github.com/facebookexperimental/Robyn/blob/main/R/R/allocator.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/auxiliary.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/calibration.R' , 'https://github.com/facebookexperimental/Robyn/blob/main/R/R/checks.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/clusters.R' , 'https://github.com/facebookexperimental/Robyn/blob/main/R/R/convergence.R' , 'https://github.com/facebookexperimental/Robyn/blob/main/R/R/data.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/exports.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/imports.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/inputs.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/json.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/model.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/model.R' , 'https://github.com/facebookexperimental/Robyn/blob/main/R/R/outputs.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/pareto.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/plots.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/refresh.R','https://github.com/facebookexperimental/Robyn/blob/main/R/R/response.R' , 'https://github.com/facebookexperimental/Robyn/blob/main/R/R/transformation.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/zzz.R']
+    Github_links =  ['https://github.com/facebookexperimental/Robyn/blob/main/demo/demo.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/allocator.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/auxiliary.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/calibration.R' , 'https://github.com/facebookexperimental/Robyn/blob/main/R/R/checks.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/clusters.R' , 'https://github.com/facebookexperimental/Robyn/blob/main/R/R/convergence.R' , 'https://github.com/facebookexperimental/Robyn/blob/main/R/R/data.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/exports.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/imports.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/inputs.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/json.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/model.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/model.R' , 'https://github.com/facebookexperimental/Robyn/blob/main/R/R/outputs.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/pareto.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/plots.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/refresh.R','https://github.com/facebookexperimental/Robyn/blob/main/R/R/response.R' , 'https://github.com/facebookexperimental/Robyn/blob/main/R/R/transformation.R' ,'https://github.com/facebookexperimental/Robyn/blob/main/R/R/zzz.R']
     for url in Github_links :
         article_text = extract_code_from_github(url)
         text_chunks = get_text_chunks(article_text)
