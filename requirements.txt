@@ -10,3 +10,4 @@ faiss-cpu
 pdf2image
 pytesseract
 openpyxl
+poppler
