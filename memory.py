@@ -4,7 +4,7 @@ import os
 # from PyPDF2 import PdfReader #used it before now using tesseract
 import requests
 from bs4 import BeautifulSoup
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import google.generativeai as genai
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
@@ -18,8 +18,8 @@ from pdf2image import convert_from_path
 # from PIL import Image
 import pytesseract
 # Load the Google API key from the .env file
-load_dotenv()
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+# load_dotenv()
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 def extract_text_from_url(url):
     response = requests.get(url)
