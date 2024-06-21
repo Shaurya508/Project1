@@ -16,6 +16,7 @@ from langchain.memory import ConversationBufferMemory
 # from langchain.chains import ConversationChain
 from pdf2image import convert_from_path
 # from PIL import Image
+import streamlit as st
 import pytesseract
 # Load the Google API key from the .env file
 # load_dotenv()
