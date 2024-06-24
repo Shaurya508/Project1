@@ -69,10 +69,10 @@ def create_ui():
 
         suggested_questions = [
             "What is Market Mix Modeling (MMM) ?",
-            "Explain about Contribution Charts  ?",
-            "Tell some ways to calibrate MMM ?",
-            "Provide code examples from Robyn .",
-            "Why frequantist MMM is better than bayesian MMM ?"
+            "What are Contribution Charts  ?",
+            "How MMMs can be caliberated ?",
+            "Provide code examples from Robyn. ",
+            "Why Frequentist MMM is better than Bayesian MMM ?"
         ]
 
         for i, question in enumerate(suggested_questions):
