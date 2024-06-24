@@ -68,7 +68,7 @@ def create_ui():
         cols = st.columns(5)  # Create 5 columns for the buttons
 
         suggested_questions = [
-            "What is MMM ?",
+            "What is Market mix modelling ?",
             "What are Contribution Charts ?",
             "Ways to calibrate MMM ?",
             "Tell something about Adstock.",
