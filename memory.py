@@ -21,6 +21,7 @@ import pytesseract
 # Load the Google API key from the .env file
 # load_dotenv()
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
+# genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 
 def extract_text_from_url(url):
     response = requests.get(url)
@@ -109,9 +110,10 @@ def user_input(user_question):
     
     prompt_template = """ You are a chatbot named MMM GPT developed by ARYMA LABS having a conversation with a human.Try to understand the context, chat history and question properly and then give detailed answers as much as possible. Don't answer if answer is not from the context however do talk like a human in a well mannered way.
     provide every answer in detailed explanation and easy words to make easy for the User.Give more weightage to question.
-    when the question is asking for code provide Short part of code Write that "Code looks like this " before giving code in a good format and easy to copy format.after providing the code , give Github Link from the paragraph from which you give the code in the end like :
+    when the question is asking for code:
+    provide Short part of code Write that "Code looks like this " before giving code in a good format and easy to copy format.after providing the code , give Github Link from the paragraph from which you give the code in the end like :
     "Please check detailed code at" : Github link
-    remember , give github link only and only when code is asked.
+    when question is not for code :
     Always provide one URL link given in the context in the following way in the end of the Answer whenver you think it's correct to provide link.
     "For more details visit" : URL link \n\n
 
