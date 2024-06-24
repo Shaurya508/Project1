@@ -72,7 +72,7 @@ def create_ui():
             "What are Contribution Charts ?",
             "Ways to calibrate MMM ?",
             "Tell something about Adstock.",
-            "What is RCT ?"
+            "Provide code for Robyn response."
         ]
 
         for i, question in enumerate(suggested_questions):
