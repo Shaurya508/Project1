@@ -71,9 +71,8 @@ def create_ui():
             "What is Market Mix Modeling (MMM) ?",
             "Explain about Contribution Charts  ?",
             "Tell some ways to calibrate MMM ?",
-            "Tell something about Weibull Adstock.",
-            "Provide code for Robyn response.",
-            "Why is frequantist MMM better than bayesian MMM ?"
+            "Provide code examples from Robyn .",
+            "Why frequantist MMM is better than bayesian MMM ?"
         ]
 
         for i, question in enumerate(suggested_questions):
