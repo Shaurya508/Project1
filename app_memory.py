@@ -41,10 +41,10 @@ def create_ui():
     </style>
     """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center; color: #0adbfc;'><u>MMM GPT</u></h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: #0adbfc;'><u>Aryma Labs - MMM GPT</u></h2>", unsafe_allow_html=True)
     st.sidebar.image("Aryma Labs Logo.jpeg")
     st.sidebar.markdown("<h2 style='color: #08daff;'>Welcome to Aryma Labs</h2>", unsafe_allow_html=True)
-    st.sidebar.write("Ask anything about MMM and get insightful answers.")
+    st.sidebar.write("Ask anything about MMM and get accurate answers.")
 
     if not st.session_state.authenticated:
         st.markdown("<h3 style='color: #4682B4;'>Login</h3>", unsafe_allow_html=True)
@@ -72,7 +72,8 @@ def create_ui():
             "Explain about Contribution Charts  ?",
             "Tell some ways to calibrate MMM ?",
             "Tell something about Weibull Adstock.",
-            "Provide code for Robyn response."
+            "Provide code for Robyn response.",
+            "Why is frequantist MMM better than bayesian MMM ?"
         ]
 
         for i, question in enumerate(suggested_questions):
