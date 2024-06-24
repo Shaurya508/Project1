@@ -20,8 +20,12 @@ if 'authenticated' not in st.session_state:
 def authenticate_user(email):
     # Load the Excel file
     df = pd.read_excel('user.xlsx')
-    # Check if the email and password match any entry in the file
-    user = df[(df['Email'] == email)]
+    # Convert the input email to lowercase
+    email = email.lower()
+    # Convert the emails in the dataframe to lowercase
+    df['Email'] = df['Email'].str.lower()
+    # Check if the email matches any entry in the file
+    user = df[df['Email'] == email]
     if not user.empty:
         return True
     return False
