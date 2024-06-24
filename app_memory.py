@@ -71,7 +71,7 @@ def create_ui():
             "What is Market mix modelling ?",
             "What are Contribution Charts ?",
             "Ways to calibrate MMM ?",
-            "Tell something about Adstock.",
+            "Tell something about Weibull Adstock.",
             "Provide code for Robyn response."
         ]
 
