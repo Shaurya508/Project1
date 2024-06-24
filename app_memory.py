@@ -4,6 +4,13 @@ from memory import user_input
 # Define the maximum number of free queries
 QUERY_LIMIT = 100
 
+hide_github_icon = """
+#GithubIcon {
+  visibility: hidden;
+}
+"""
+st.markdown(hide_github_icon, unsafe_allow_html=True)
+
 # Initialize session state for tracking the number of queries, conversation history, suggested questions, and authentication
 if 'query_count' not in st.session_state:
     st.session_state.query_count = 0
