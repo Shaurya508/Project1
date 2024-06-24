@@ -69,7 +69,7 @@ def create_ui():
 
         suggested_questions = [
             "What is Market Mix Modeling (MMM) ?",
-            "Explain Contribution Charts and its types ?",
+            "Explain about Contribution Charts  ?",
             "Tell some ways to calibrate MMM ?",
             "Tell something about Weibull Adstock.",
             "Provide code for Robyn response."
