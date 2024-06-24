@@ -4,19 +4,6 @@ from memory import user_input
 # Define the maximum number of free queries
 QUERY_LIMIT = 100
 
-st.markdown(
-    """
-    <style>
-    .css-1jc7ptx, .e1ewe7hr3, .viewerBadge_container__1QSob,
-    .styles_viewerBadge__1yB5_, .viewerBadge_link__1S137,
-    .viewerBadge_text__1JaDK {
-        display: none;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Initialize session state for tracking the number of queries, conversation history, suggested questions, and authentication
 if 'query_count' not in st.session_state:
     st.session_state.query_count = 0
@@ -44,6 +31,18 @@ def authenticate_user(email):
     return False
 
 def create_ui():
+    st.markdown(
+    """
+    <style>
+    .css-1jc7ptx, .e1ewe7hr3, .viewerBadge_container__1QSob,
+    .styles_viewerBadge__1yB5_, .viewerBadge_link__1S137,
+    .viewerBadge_text__1JaDK {
+        display: none;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
     st.markdown("<h2 style='text-align: center; color: #0adbfc;'><u>MMM GPT</u></h2>", unsafe_allow_html=True)
     st.sidebar.image("Aryma Labs Logo.jpeg")
     st.sidebar.markdown("<h2 style='color: #08daff;'>Welcome to Aryma Labs</h2>", unsafe_allow_html=True)
