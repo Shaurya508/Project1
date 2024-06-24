@@ -44,7 +44,7 @@ def create_ui():
     st.markdown("<h2 style='text-align: center; color: #0adbfc;'><u>MMM GPT</u></h2>", unsafe_allow_html=True)
     st.sidebar.image("Aryma Labs Logo.jpeg")
     st.sidebar.markdown("<h2 style='color: #08daff;'>Welcome to Aryma Labs</h2>", unsafe_allow_html=True)
-    st.sidebar.write("Ask anythin about MMM and get insightful answers.")
+    st.sidebar.write("Ask anything about MMM and get insightful answers.")
 
     if not st.session_state.authenticated:
         st.markdown("<h3 style='color: #4682B4;'>Login</h3>", unsafe_allow_html=True)
