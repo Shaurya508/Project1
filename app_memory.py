@@ -70,7 +70,7 @@ def create_ui():
         suggested_questions = [
             "What is Market Mix Modeling (MMM) ?",
             "What are Contribution Charts  ?",
-            "How MMMs can be caliberated ?",
+            "How MMMs can be calibrated and validated ?",
             "Provide code examples from Robyn. ",
             "Why Frequentist MMM is better than Bayesian MMM ?"
         ]
