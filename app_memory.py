@@ -31,12 +31,13 @@ def authenticate_user(email):
     return False
 
 def create_ui():
-    # Inject CSS to hide the Streamlit footer and GitHub link
     hide_streamlit_style = """
     <style>
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
-    .viewerBadge_link__1S137 {display: none !important;}
+    footer:after {content:''; display:block; position:relative; top:2px; color: transparent; background-color: transparent;}
+    .viewerBadge_container__1QSob {display: none !important;}
+    .stActionButton {display: none !important;}
     </style>
     """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
