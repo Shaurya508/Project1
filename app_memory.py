@@ -130,7 +130,7 @@ def create_ui():
         else:
             with st.spinner("Generating response..."):
                 response, docs = user_input(question)
-                st.session_state.chat += response
+                st.session_state.chat += str(response)
                 output_text = response.get('output_text', 'No response')  # Extract the 'output_text' from the response
                 st.session_state.conversation_history.append((question, output_text))
                 st.session_state.suggested_question = ""  # Reset the suggested question after submission
