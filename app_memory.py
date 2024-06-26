@@ -141,7 +141,7 @@ def create_ui():
                 function scroll(dummy_var_to_force_repeat_execution){{
                 var textAreas = parent.document.querySelectorAll('section.main');
                 for (let index = 0; index < textAreas.length; index++) {{
-                textAreas[index].style.color = '#dad7d7'
+                textAreas[index].style.color = '#000000'
                 let scrollInterval = setInterval(() => {{
                 if (textArea.scrollTop < textArea.scrollHeight) {{
                     textArea.scrollBy(0, 1); // Adjust the second parameter to control the scroll speed
