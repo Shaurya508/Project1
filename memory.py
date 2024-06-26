@@ -178,8 +178,7 @@ def user_input(user_question):
     provide every answer in detailed explanation and easy words to make easy for the User.
     Also, provide one URL link given in the context only in the following way in the end of the Answer.
     "For more details visit" : link \n\n
-    if the link is of github , substack , linkidin or any other link.give only that link from which you have fetched the answer , don't give link from outside the context.
-    Give most important substack link in case you are having facebook link above substack link.
+    if question is asking for code give github link else always give link from substack or linkidIN .
     Context:\n{context}?\n
     Question:\n{question} + Explain in detail.\n
     Answer:
