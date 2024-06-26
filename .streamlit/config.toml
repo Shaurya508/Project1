@@ -1,1 +1,6 @@
-
+[theme]
+# primaryColor="#463f3f"
+# backgroundColor="#262b2b"
+# secondaryBackgroundColor="#30365a"
+textColor="#000000"
+font="serif"
