@@ -172,6 +172,7 @@ def user_input(user_question):
 #     question: {human_input}
 # Chatbot:"""
     prompt_template = """
+    you are MMMGPT devloped by Aryma labs to help users on market mix modelling(MMM) , Now you have to chat with the user.
     Try to understand the context and then give detailed answers as much as possible. Don't answer if answer is not from the context.
     provide every answer in detailed explanation and easy words to make easy for the User.
     Also, provide one URL link given in the context only in the following way in the end of the Answer.
