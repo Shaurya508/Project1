@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 from memory import user_input
-
 # Define the maximum number of free queries
 QUERY_LIMIT = 100
 
@@ -23,6 +22,7 @@ if 'generate_response' not in st.session_state:
 
 if 'chat' not in st.session_state:
     st.session_state.chat = ""
+
 
 def authenticate_user(email):
     # Load the Excel file
@@ -83,7 +83,7 @@ def create_ui():
     # cols = st.columns(5)  # Create 5 columns for the buttons
 
     suggested_questions = [
-        "What is Market Mix Modelling ?",
+        "What is Market Mix modelling ?",
         "What are Contribution Charts  ?",
         "Provide code examples from Robyn. ",
         "How MMMs can be calibrated and validated ?",
@@ -126,6 +126,7 @@ def create_ui():
                 question = st.text_input(instr, key="input_question", placeholder=instr, label_visibility='collapsed')
         with col2:
             submit_button = st.form_submit_button(label='Chat')
+            
 
         if submit_button and question:
             st.session_state.generate_response = True
@@ -137,30 +138,23 @@ def create_ui():
             with st.spinner("Generating response..."):
                 response, docs = user_input(question)
                 output_text = response.get('output_text', 'No response')  # Extract the 'output_text' from the response
+                st.session_state.chat += str(output_text)
                 st.session_state.conversation_history.append((question, output_text))
                 st.session_state.suggested_question = ""  # Reset the suggested question after submission
                 st.session_state.query_count += 1  # Increment the query count
                 st.session_state.generate_response = False
-
                 js = f"""
-            <script>
-                function scroll(dummy_var_to_force_repeat_execution){{
-                var textAreas = parent.document.querySelectorAll('section.main');
-                for (let index = 0; index < textAreas.length; index++) {{
-                textAreas[index].style.color = '#000000'
-                let scrollInterval = setInterval(() => {{
-                if (textArea.scrollTop < textArea.scrollHeight) {{
-                    textArea.scrollBy(0, 2); // Adjust the second parameter to control the scroll speed
-                }} else {{
-                    clearInterval(scrollInterval);
-                }}
-            }}, 10);
-                textAreas[index].scrollTop = textAreas[index].scrollHeight;
-                }}
-                }}
-                scroll({len(st.session_state.chat)})
-            </script>
-                    """
+<script>
+    function scroll(dummy_var_to_force_repeat_execution){{
+        var textAreas = parent.document.querySelectorAll('section.main');
+        for (let index = 0; index < textAreas.length; index++) {{
+            textAreas[index].style.color = '#000000'
+            textAreas[index].scrollTop = textAreas[index].scrollHeight;
+        }}
+    }}
+    scroll({len(st.session_state.chat)})
+</script>
+"""
 
                 st.components.v1.html(js)
                 st.experimental_rerun()
