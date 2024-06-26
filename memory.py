@@ -199,7 +199,7 @@ def user_input(user_question):
 #     model, chain_type="stuff", memory=memory, prompt=PROMPT
 # )
 #     return chain({"input_documents": docs, "human_input": user_question}, return_only_outputs=True) , docs
-    model = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.9)
+    model = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.3)
     # repo_id="mistralai/Mistral-7B-Instruct-v0.2"
     # model=HuggingFaceEndpoint(repo_id=repo_id,max_length=128,temperature=0.7,token=sec_key)
     prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
@@ -208,7 +208,7 @@ def user_input(user_question):
     new_db = FAISS.load_local("faiss_index3", embeddings, allow_dangerous_deserialization=True)  # Load the previously saved vector db
     # chain , model = get_conversational_chain()
 
-    mq_retriever = MultiQueryRetriever.from_llm(retriever = new_db.as_retriever(k = 8), llm = model)
+    mq_retriever = MultiQueryRetriever.from_llm(retriever = new_db.as_retriever(k = 10), llm = model)
     docs = mq_retriever.get_relevant_documents(query=user_question)
 
 
