@@ -18,10 +18,10 @@ from pdf2image import convert_from_path
 # from PIL import Image
 import streamlit as st
 import pytesseract
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-import time
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.common.keys import Keys
+# import time
 # Load the Google API key from the .env file
 # load_dotenv()
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
