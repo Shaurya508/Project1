@@ -100,6 +100,12 @@ def create_ui():
     chat_container = st.container()
 
     with chat_container:
+        if(st.session_state.conversation_history == []):
+            col1, col2 = st.columns([1, 8])
+            with col1:
+                st.image('download.png', width=30)
+            with col2:
+                st.write("Hello , I am MMMGPT  , How can I help you ?")
         for q, r in st.session_state.conversation_history:
             st.markdown(f"<p style='text-align: right; color: #484f4f;'><b> {q}</b> </p>", unsafe_allow_html=True)
             col1, col2 = st.columns([1, 8])
