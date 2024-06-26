@@ -178,6 +178,7 @@ def user_input(user_question):
     Also, provide one URL link given in the context only in the following way in the end of the Answer.
     "For more details visit" : link \n\n
     if the link is of github , substack , linkidin or any other link.give only that link from which you have fetched the answer , don't give link from outside the context.
+    Give substack link in case you are having facebook link.
     Context:\n{context}?\n
     Question:\n{question} + Explain in detail.\n
     Answer:
