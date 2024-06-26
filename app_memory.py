@@ -130,6 +130,7 @@ def create_ui():
         else:
             with st.spinner("Generating response..."):
                 response, docs = user_input(question)
+                st.session_state.chat += response + question
                 output_text = response.get('output_text', 'No response')  # Extract the 'output_text' from the response
                 st.session_state.conversation_history.append((question, output_text))
                 st.session_state.suggested_question = ""  # Reset the suggested question after submission
@@ -141,7 +142,7 @@ def create_ui():
     function scroll(dummy_var_to_force_repeat_execution){{
         var textAreas = parent.document.querySelectorAll('section.main');
         for (let index = 0; index < textAreas.length; index++) {{
-            textAreas[index].style.color = 'red'
+            textAreas[index].style.color = 'black'
             textAreas[index].scrollTop = textAreas[index].scrollHeight;
         }}
     }}
