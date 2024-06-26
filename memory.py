@@ -206,7 +206,7 @@ def user_input(user_question):
     new_db = FAISS.load_local("faiss_index2", embeddings, allow_dangerous_deserialization=True)  # Load the previously saved vector db
     # chain , model = get_conversational_chain()
 
-    mq_retriever = MultiQueryRetriever.from_llm(retriever = new_db.as_retriever(k = 6), llm = model)
+    mq_retriever = MultiQueryRetriever.from_llm(retriever = new_db.as_retriever(k = 10), llm = model)
     docs = mq_retriever.get_relevant_documents(query=user_question)
 
 
