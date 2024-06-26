@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
-from memory import user_input 
+from memory import user_input
+
 # Define the maximum number of free queries
 QUERY_LIMIT = 100
 
@@ -16,6 +17,12 @@ if 'suggested_question' not in st.session_state:
 
 if 'authenticated' not in st.session_state:
     st.session_state.authenticated = False
+
+if 'generate_response' not in st.session_state:
+    st.session_state.generate_response = False
+
+if 'chat' not in st.session_state:
+    st.session_state.chat = ""
 
 def authenticate_user(email):
     # Load the Excel file
@@ -38,6 +45,18 @@ def create_ui():
     footer:after {content:''; display:block; position:relative; top:2px; color: transparent; background-color: transparent;}
     .viewerBadge_container__1QSob {display: none !important;}
     .stActionButton {display: none !important;}
+    ::-webkit-scrollbar {
+        width: 12px;  /* Keep the width of the scrollbar */
+    }
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
     </style>
     """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -50,7 +69,6 @@ def create_ui():
         st.markdown("<h3 style='color: #4682B4;'>Login</h3>", unsafe_allow_html=True)
         with st.form(key='login_form'):
             email = st.text_input("Email")
-            # password = st.text_input("Password", type="password")
             login_button = st.form_submit_button(label='Login')
 
             if login_button:
@@ -61,24 +79,22 @@ def create_ui():
                     st.error("Invalid email or password. Please try again.")
         return
 
-    if not st.session_state.suggested_question:
-        # Suggested questions
-        st.markdown("<h3 style='color: #4682B4;'>Popular Questions</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='color: #4682B4;'>Popular Questions</h3>", unsafe_allow_html=True)
+    cols = st.columns(5)  # Create 5 columns for the buttons
 
-        cols = st.columns(5)  # Create 5 columns for the buttons
+    suggested_questions = [
+        "What is Market Mix Modeling (MMM) ?",
+        "What are Contribution Charts  ?",
+        "Provide code examples from Robyn. ",
+        "How MMMs can be calibrated and validated ?",
+        "Why Frequentist MMM is better than Bayesian MMM ?"
+    ]
 
-        suggested_questions = [
-            "What is Market Mix Modeling (MMM) ?",
-            "What are Contribution Charts  ?",
-            "Provide code examples from Robyn. ",
-            "How MMMs can be calibrated and validated ?",
-            "Why Frequentist MMM is better than Bayesian MMM ?"
-        ]
-
-        for i, question in enumerate(suggested_questions):
-            if cols[i % 5].button(question):
-                st.session_state.suggested_question = question
-                st.experimental_rerun()
+    for i, question in enumerate(suggested_questions):
+        if cols[i % 5].button(question):
+            st.session_state.suggested_question = question
+            st.session_state.generate_response = True
+            break
 
     # Display the conversation history in reverse order to resemble a chat interface
     chat_container = st.container()
@@ -106,16 +122,42 @@ def create_ui():
             submit_button = st.form_submit_button(label='Chat')
 
         if submit_button and question:
-            if st.session_state.query_count >= QUERY_LIMIT:
-                st.warning("You have reached the limit of free queries. Please consider our pricing options for further use.")
-            else:
-                with st.spinner("Generating response..."):
-                    response, _ = user_input(question)
-                    output_text = response.get('output_text', 'No response')  # Extract the 'output_text' from the response
-                    st.session_state.conversation_history.append((question, output_text))
-                    st.session_state.suggested_question = ""  # Reset the suggested question after submission
-                    st.session_state.query_count += 1  # Increment the query count
-                    st.experimental_rerun()
+            st.session_state.generate_response = True
+
+    if st.session_state.generate_response and question:
+        if st.session_state.query_count >= QUERY_LIMIT:
+            st.warning("You have reached the limit of free queries. Please consider our pricing options for further use.")
+        else:
+            with st.spinner("Generating response..."):
+                response, docs = user_input(question)
+                output_text = response.get('output_text', 'No response')  # Extract the 'output_text' from the response
+                st.session_state.conversation_history.append((question, output_text))
+                st.session_state.suggested_question = ""  # Reset the suggested question after submission
+                st.session_state.query_count += 1  # Increment the query count
+                st.session_state.generate_response = False
+
+                js = f"""
+            <script>
+                function scroll(dummy_var_to_force_repeat_execution){{
+                var textAreas = parent.document.querySelectorAll('section.main');
+                for (let index = 0; index < textAreas.length; index++) {{
+                textAreas[index].style.color = '#dad7d7'
+                let scrollInterval = setInterval(() => {{
+                if (textArea.scrollTop < textArea.scrollHeight) {{
+                    textArea.scrollBy(0, 1); // Adjust the second parameter to control the scroll speed
+                }} else {{
+                    clearInterval(scrollInterval);
+                }}
+            }}, 10);
+                textAreas[index].scrollTop = textAreas[index].scrollHeight;
+                }}
+                }}
+                scroll({len(st.session_state.chat)})
+            </script>
+                    """
+
+                st.components.v1.html(js)
+                st.experimental_rerun()
 
     st.markdown("---")
     st.markdown("<p style='text-align: center; color: #A9A9A9;'>Powered by: Aryma Labs</p>", unsafe_allow_html=True)
