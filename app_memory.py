@@ -101,6 +101,7 @@ def create_ui():
 
     with chat_container:
         if(st.session_state.conversation_history == []):
+            user_input("hi")
             col1, col2 = st.columns([1, 8])
             with col1:
                 st.image('download.png', width=30)
