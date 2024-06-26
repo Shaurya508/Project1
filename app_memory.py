@@ -83,7 +83,7 @@ def create_ui():
     cols = st.columns(5)  # Create 5 columns for the buttons
 
     suggested_questions = [
-        "What is MMM (Market Mix modelling) ?",
+        "What is MMM ?",
         "What are Contribution Charts  ?",
         "Provide code examples from Robyn. ",
         "How MMMs can be calibrated and validated ?",
@@ -137,16 +137,24 @@ def create_ui():
                 st.session_state.generate_response = False
 
                 js = f"""
-<script>
-    function scroll(dummy_var_to_force_repeat_execution){{
-        var textAreas = parent.document.querySelectorAll('section.main');
-        for (let index = 0; index < textAreas.length; index++) {{
-            textAreas[index].scrollTop = textAreas[index].scrollHeight;
-        }}
-    }}
-    scroll({len(st.session_state.chat)})
-</script>
-"""
+            <script>
+                function scroll(dummy_var_to_force_repeat_execution){{
+                var textAreas = parent.document.querySelectorAll('section.main');
+                for (let index = 0; index < textAreas.length; index++) {{
+                textAreas[index].style.color = '#dad7d7'
+                let scrollInterval = setInterval(() => {{
+                if (textArea.scrollTop < textArea.scrollHeight) {{
+                    textArea.scrollBy(0, 2); // Adjust the second parameter to control the scroll speed
+                }} else {{
+                    clearInterval(scrollInterval);
+                }}
+            }}, 10);
+                textAreas[index].scrollTop = textAreas[index].scrollHeight;
+                }}
+                }}
+                scroll({len(st.session_state.chat)})
+            </script>
+                    """
 
                 st.components.v1.html(js)
                 st.experimental_rerun()
