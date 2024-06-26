@@ -178,7 +178,7 @@ def user_input(user_question):
     provide every answer in detailed explanation and easy words to make easy for the User.
     Also, provide one URL link given in the context only in the following way in the end of the Answer.
     "For more details visit" : link \n\n
-    if question is asking for code give github link else always give link like " arymalabs.substack.com " .
+    if question is asking for code always give github link and if it is not about code then always give link like " arymalabs.substack.com " .
     Context:\n{context}?\n
     Question:\n{question} + Explain in detail.\n
     Answer:
