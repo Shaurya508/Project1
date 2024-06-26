@@ -205,7 +205,7 @@ def user_input(user_question):
     prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
     chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")  # Model for creating vector embeddings
-    new_db = FAISS.load_local("faiss_index2", embeddings, allow_dangerous_deserialization=True)  # Load the previously saved vector db
+    new_db = FAISS.load_local("faiss_index3", embeddings, allow_dangerous_deserialization=True)  # Load the previously saved vector db
     # chain , model = get_conversational_chain()
 
     mq_retriever = MultiQueryRetriever.from_llm(retriever = new_db.as_retriever(k = 8), llm = model)
