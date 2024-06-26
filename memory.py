@@ -24,8 +24,8 @@ import pytesseract
 # import time
 # Load the Google API key from the .env file
 # load_dotenv()
-genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-# genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
+# genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
+genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 # Load the Google API key from the .env file
 # load_dotenv()
 # genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
