@@ -62,9 +62,33 @@ def create_ui():
 
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; color: #0adbfc;'><u>Aryma Labs - MMM GPT</u></h2>", unsafe_allow_html=True)
-    st.sidebar.image("Aryma Labs Logo.jpeg")
+    
+
+    # CSS to adjust the layout and padding
+    st.markdown("""
+    <style>
+        .sidebar .sidebar-content {
+            padding: 20px;
+        }
+        .element-container {
+            margin-bottom: 10px;
+        }
+        .stButton button {
+            padding: 10px 20px;
+        }
+        .sidebar .sidebar-content .element-container:first-child {
+            margin-top: 0;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+    # Sidebar content
+    st.sidebar.markdown("<div style='text-align: center;'><img src='Aryma Labs Logo.jpeg' style='width: 100%;'></div>", unsafe_allow_html=True)
     st.sidebar.markdown("<h2 style='color: #08daff;'>Welcome to Aryma Labs</h2>", unsafe_allow_html=True)
     st.sidebar.write("Ask anything about MMM and get accurate answers.")
+    st.sidebar.markdown("<h4 style='color: #08daff;'>Popular Questions</h4>", unsafe_allow_html=True)
+
+    
 
     if not st.session_state.authenticated:
         st.markdown("<h3 style='color: #4682B4;'>Login</h3>", unsafe_allow_html=True)
