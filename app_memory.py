@@ -91,7 +91,7 @@ def create_ui():
     ]
 
     for i, question in enumerate(suggested_questions):
-        if st.sidebar.button(question):
+        if st.sidebar.button(question, use_container_width = True):
             st.session_state.suggested_question = question
             st.session_state.generate_response = True
             break
