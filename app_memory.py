@@ -158,7 +158,7 @@ def create_ui():
 """
 
                 st.components.v1.html(js)
-                st.experimental_rerun()
+                st.rerun()
 
     st.markdown("---")
     st.markdown("<p style='text-align: center; color: #A9A9A9;'>Powered by: Aryma Labs</p>", unsafe_allow_html=True)
