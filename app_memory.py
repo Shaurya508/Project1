@@ -146,7 +146,9 @@ def create_ui():
                 st.session_state.query_count += 1  # Increment the query count
                 st.session_state.generate_response = False
                 st.rerun()
-
+    st.markdown("""
+        <div class="scroll-icon">⬇️</div>
+        """, unsafe_allow_html=True)
     st.markdown("---")
     st.markdown("<p style='text-align: center; color: #A9A9A9;'>Powered by: Aryma Labs</p>", unsafe_allow_html=True)
 
