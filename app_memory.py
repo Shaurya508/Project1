@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from memory import user_input
+
 # Define the maximum number of free queries
 QUERY_LIMIT = 100
 
@@ -22,7 +23,6 @@ if 'generate_response' not in st.session_state:
 
 if 'chat' not in st.session_state:
     st.session_state.chat = ""
-
 
 def authenticate_user(email):
     # Load the Excel file
@@ -58,6 +58,11 @@ def create_ui():
         background: #555;
     }
     </style>
+    <style>
+    .sidebar-content {
+        overflow-y: hidden;
+    }
+    </style>
     """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; color: #0adbfc;'><u>Aryma Labs - MMM GPT</u></h2>", unsafe_allow_html=True)
@@ -91,7 +96,7 @@ def create_ui():
     ]
 
     for i, question in enumerate(suggested_questions):
-        if st.sidebar.button(question, use_container_width = True):
+        if st.sidebar.button(question, use_container_width=True):
             st.session_state.suggested_question = question
             st.session_state.generate_response = True
             break
@@ -100,7 +105,7 @@ def create_ui():
     chat_container = st.container()
 
     with chat_container:
-        if(st.session_state.conversation_history == []):
+        if st.session_state.conversation_history == []:
             col1, col2 = st.columns([1, 8])
             with col1:
                 st.image('download.png', width=30)
@@ -127,7 +132,6 @@ def create_ui():
         with col2:
             submit_button = st.form_submit_button(label='Chat')
             
-
         if submit_button and question:
             st.session_state.generate_response = True
 
@@ -143,7 +147,7 @@ def create_ui():
                 st.session_state.suggested_question = ""  # Reset the suggested question after submission
                 st.session_state.query_count += 1  # Increment the query count
                 st.session_state.generate_response = False
-                st.rerun()
+                st.experimental_rerun()
 
     st.markdown("---")
     st.markdown("<p style='text-align: center; color: #A9A9A9;'>Powered by: Aryma Labs</p>", unsafe_allow_html=True)
