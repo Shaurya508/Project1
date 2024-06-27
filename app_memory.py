@@ -60,20 +60,6 @@ def create_ui():
     </style>
     """
 
-# CSS to remove the scrollbar and adjust the sidebar layout
-    st.markdown("""
-    <style>
-        /* Hide scrollbar */
-        .sidebar .sidebar-content {
-            overflow-y: hidden;
-        }
-        /* Adjust sidebar layout */
-        .sidebar .element-container {
-            padding-right: 20px;
-        }
-    </style>
-    """, unsafe_allow_html=True)
-
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; color: #0adbfc;'><u>Aryma Labs - MMM GPT</u></h2>", unsafe_allow_html=True)
     st.sidebar.image("Aryma Labs Logo.jpeg")
@@ -106,10 +92,24 @@ def create_ui():
     ]
 
     for i, question in enumerate(suggested_questions):
-        if st.sidebar.button(question, use_container_width = True):
+        if st.sidebar.button(question, key=f"button_{i}", use_container_width=True):
             st.session_state.suggested_question = question
             st.session_state.generate_response = True
-            break
+
+    # Additional CSS to adjust spacing and sizes
+    st.markdown("""
+    <style>
+        .sidebar .sidebar-content {
+            padding: 20px;
+        }
+        .element-container {
+            margin-bottom: 10px;
+        }
+        .stButton button {
+            padding: 10px 20px;
+        }
+    </style>
+    """, unsafe_allow_html=True)
 
     # Display the conversation history in reverse order to resemble a chat interface
     chat_container = st.container()
