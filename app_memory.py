@@ -103,7 +103,7 @@ def create_ui():
             padding: 20px;
         }
         .element-container {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         .stButton button {
             padding: 10px 20px;
