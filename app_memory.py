@@ -144,20 +144,6 @@ def create_ui():
                 st.session_state.suggested_question = ""  # Reset the suggested question after submission
                 st.session_state.query_count += 1  # Increment the query count
                 st.session_state.generate_response = False
-                js = f"""
-<script>
-    function scroll(dummy_var_to_force_repeat_execution){{
-        var textAreas = parent.document.querySelectorAll('section.main');
-        for (let index = 0; index < textAreas.length; index++) {{
-            textAreas[index].style.color = '#000000'
-            textAreas[index].scrollTop = textAreas[index].scrollHeight;
-        }}
-    }}
-    scroll({len(st.session_state.chat)})
-</script>
-"""
-
-                st.components.v1.html(js)
                 st.rerun()
 
     st.markdown("---")
