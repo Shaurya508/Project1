@@ -59,7 +59,7 @@ def create_ui():
     }
     .scroll-icon {
         position: fixed;
-        bottom: 10px;
+        bottom: 20px;  /* Adjusted the position upwards */
         right: 10px;
         font-size: 32px;
         cursor: pointer;
