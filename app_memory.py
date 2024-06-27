@@ -59,6 +59,21 @@ def create_ui():
     }
     </style>
     """
+
+# CSS to remove the scrollbar and adjust the sidebar layout
+st.markdown("""
+    <style>
+        /* Hide scrollbar */
+        .sidebar .sidebar-content {
+            overflow-y: hidden;
+        }
+        /* Adjust sidebar layout */
+        .sidebar .element-container {
+            padding-right: 20px;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; color: #0adbfc;'><u>Aryma Labs - MMM GPT</u></h2>", unsafe_allow_html=True)
     st.sidebar.image("Aryma Labs Logo.jpeg")
