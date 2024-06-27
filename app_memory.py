@@ -96,20 +96,6 @@ def create_ui():
             st.session_state.suggested_question = question
             st.session_state.generate_response = True
 
-    # Additional CSS to adjust spacing and sizes
-    st.markdown("""
-    <style>
-        .sidebar .sidebar-content {
-            padding: 20px;
-        }
-        .element-container {
-            margin-bottom: 5px;
-        }
-        .stButton button {
-            padding: 10px 20px;
-        }
-    </style>
-    """, unsafe_allow_html=True)
 
     # Display the conversation history in reverse order to resemble a chat interface
     chat_container = st.container()
