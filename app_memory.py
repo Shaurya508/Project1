@@ -61,7 +61,7 @@ def create_ui():
     """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; color: #0adbfc;'><u>Aryma Labs - MMM GPT</u></h2>", unsafe_allow_html=True)
-    st.sidebar.image("Aryma Labs Logo.jpeg" , width = 200)
+    st.sidebar.image("Aryma Labs Logo.jpeg")
     st.sidebar.markdown("<h2 style='color: #08daff;'>Welcome to Aryma Labs</h2>", unsafe_allow_html=True)
     st.sidebar.write("Ask anything about MMM and get accurate answers.")
 
@@ -79,7 +79,7 @@ def create_ui():
                     st.error("Invalid email or password. Please try again.")
         return
 
-    st.sidebar.markdown("<h3 style='color: #08daff;'>Popular Questions</h3>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h4 style='color: #08daff;'>Popular Questions</h3>", unsafe_allow_html=True)
     # cols = st.columns(5)  # Create 5 columns for the buttons
 
     suggested_questions = [
