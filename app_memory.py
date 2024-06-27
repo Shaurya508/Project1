@@ -61,7 +61,7 @@ def create_ui():
     """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; color: #0adbfc;'><u>Aryma Labs - MMM GPT</u></h2>", unsafe_allow_html=True)
-    st.sidebar.image("Aryma Labs Logo.jpeg" , width = 100)
+    st.sidebar.image("Aryma Labs Logo.jpeg" , width = 200)
     st.sidebar.markdown("<h2 style='color: #08daff;'>Welcome to Aryma Labs</h2>", unsafe_allow_html=True)
     st.sidebar.write("Ask anything about MMM and get accurate answers.")
 
