@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from memory import user_input
+
 # Define the maximum number of free queries
 QUERY_LIMIT = 100
 
@@ -22,7 +23,6 @@ if 'generate_response' not in st.session_state:
 
 if 'chat' not in st.session_state:
     st.session_state.chat = ""
-
 
 def authenticate_user(email):
     # Load the Excel file
@@ -57,7 +57,21 @@ def create_ui():
     ::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
+    .scroll-icon {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        font-size: 32px;
+        cursor: pointer;
+        color: #0adbfc;
+        z-index: 1000;
+    }
     </style>
+    <script>
+    function scrollToBottom() {
+        window.scrollTo(0, 50000);
+    }
+    </script>
     """
 
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -82,14 +96,13 @@ def create_ui():
         return
 
     st.sidebar.markdown("<h5 style='color: #08daff;'>Popular Questions</h3>", unsafe_allow_html=True)
-    # cols = st.columns(5)  # Create 5 columns for the buttons
 
     suggested_questions = [
-        "What is Market Mix modelling ?",
-        "What are Contribution Charts  ?",
-        "Provide code examples from Robyn. ",
-        "How MMMs can be calibrated and validated ?",
-        "Why Frequentist MMM is better than Bayesian MMM ?"
+        "What is Market Mix modelling?",
+        "What are Contribution Charts?",
+        "Provide code examples from Robyn.",
+        "How MMMs can be calibrated and validated?",
+        "Why Frequentist MMM is better than Bayesian MMM?"
     ]
 
     for i, question in enumerate(suggested_questions):
@@ -97,19 +110,18 @@ def create_ui():
             st.session_state.suggested_question = question
             st.session_state.generate_response = True
 
-
     # Display the conversation history in reverse order to resemble a chat interface
     chat_container = st.container()
 
     with chat_container:
-        if(st.session_state.conversation_history == []):
+        if st.session_state.conversation_history == []:
             col1, col2 = st.columns([1, 8])
             with col1:
                 st.image('download.png', width=30)
             with col2:
                 st.write("Hello, I am MMM GPT from Aryma Labs. How can I help you?")
         for q, r in st.session_state.conversation_history:
-            st.markdown(f"<p style='text-align: right; color: #484f4f;'><b> {q}</b> </p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='text-align: right; color: #484f4f;'><b>{q}</b></p>", unsafe_allow_html=True)
             col1, col2 = st.columns([1, 8])
             with col1:
                 st.image('download.png', width=30)
@@ -128,7 +140,6 @@ def create_ui():
                 question = st.text_input(instr, key="input_question", placeholder=instr, label_visibility='collapsed')
         with col2:
             submit_button = st.form_submit_button(label='Chat')
-            
 
         if submit_button and question:
             st.session_state.generate_response = True
@@ -146,9 +157,12 @@ def create_ui():
                 st.session_state.query_count += 1  # Increment the query count
                 st.session_state.generate_response = False
                 st.rerun()
+
+    # Scroll to bottom icon
     st.markdown("""
         <div class="scroll-icon">⬇️</div>
         """, unsafe_allow_html=True)
+
     st.markdown("---")
     st.markdown("<p style='text-align: center; color: #A9A9A9;'>Powered by: Aryma Labs</p>", unsafe_allow_html=True)
 
