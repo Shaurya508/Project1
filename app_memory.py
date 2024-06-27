@@ -87,7 +87,8 @@ def create_ui():
         "What are Contribution Charts  ?",
         "Provide code examples from Robyn. ",
         "How MMMs can be calibrated and validated ?",
-        "Why Frequentist MMM is better than Bayesian MMM ?"
+        "Why Frequentist MMM is better than Bayesian MMM ?",
+        "What is Adstock ?"
     ]
 
     for i, question in enumerate(suggested_questions):
