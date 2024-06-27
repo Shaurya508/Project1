@@ -207,17 +207,22 @@ def user_input(user_question):
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")  # Model for creating vector embeddings
     new_db = FAISS.load_local("faiss_index3", embeddings, allow_dangerous_deserialization=True)  # Load the previously saved vector db
     new_db1 = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
+    new_db2 = FAISS.load_local("faiss_index2", embeddings, allow_dangerous_deserialization=True)
+
     # chain , model = get_conversational_chain()
 
-    mq_retriever = MultiQueryRetriever.from_llm(retriever = new_db.as_retriever(k = 5), llm = model)
-    mq_retriever1 = MultiQueryRetriever.from_llm(retriever = new_db1.as_retriever(k = 5), llm = model)
+    mq_retriever = MultiQueryRetriever.from_llm(retriever = new_db.as_retriever(k = 4), llm = model)
+    mq_retriever1 = MultiQueryRetriever.from_llm(retriever = new_db1.as_retriever(k = 3), llm = model)
+    mq_retriever2 = MultiQueryRetriever.from_llm(retriever = new_db2.as_retriever(k = 3), llm = model)
+
 
     docs = mq_retriever.get_relevant_documents(query=user_question)
     docs1 = mq_retriever1.get_relevant_documents(query=user_question)
+    docs2 = mq_retriever2.get_relevant_documents(query=user_question)
 
 
     # docs = new_db.similarity_search(query=user_question, k=10)  # Get similar text from the database with the query
-    response = chain({"input_documents": docs1 + docs, "question": user_question}, return_only_outputs=True)
+    response = chain({"input_documents": docs + docs1 + docs2, "question": user_question}, return_only_outputs=True)
 
     return response, docs
 
