@@ -61,7 +61,7 @@ def create_ui():
     """
 
 # CSS to remove the scrollbar and adjust the sidebar layout
-st.markdown("""
+    st.markdown("""
     <style>
         /* Hide scrollbar */
         .sidebar .sidebar-content {
