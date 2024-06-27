@@ -60,7 +60,7 @@ def create_ui():
     .scroll-icon {
         position: fixed;
         bottom: 40px;  /* Adjusted the position upwards */
-        right: 100px;
+        right: 150px;
         font-size: 32px;
         cursor: pointer;
         color: #0adbfc;
